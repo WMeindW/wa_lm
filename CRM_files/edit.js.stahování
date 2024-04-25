@@ -24,7 +24,7 @@ $(document).ready(function(){
     });
  
 
-});//doument ready
+});//document ready
 
 
 function makeJSON(id,Allelements) {

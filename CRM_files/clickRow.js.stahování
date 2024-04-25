@@ -61,28 +61,19 @@ function editClick(id,button) {
 
 
 function addClick() {
-
 	layout(1);
-    var tr = $(".name");
-	
-    tr.each(function() {
-    
-    $(this).click(function(event){
-    
-        editClick(event.target.parentElement.id,event.which);
-    });        
-    
-     $(this).mousedown(function(event) {
-         if (event.which==3) {
-         
-        
-        navigator.clipboard.writeText($(this).parent().children(".email").attr("title"));
-        }
-     
-     });
-    
+
+    // Attach the click event to a parent element
+    $('#basic').on('click', '.name', function(event) {
+        editClick(event.target.parentElement.id, event.which);
     });
-        
+
+    // Attach the mousedown event to the same parent element
+    $('#basic').on('mousedown', '.name', function(event) {
+        if (event.which == 3) {
+            navigator.clipboard.writeText($(this).parent().children(".email").attr("title"));
+        }
+    });
 }
 
 
