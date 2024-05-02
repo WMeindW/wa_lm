@@ -1,17 +1,15 @@
-$( window ).on( "resize", function() {
-  
-} );
+$(window).on("resize", function () {
 
+});
 
 
 $(document).ready(function () {
 
 
-
- var $chkboxes = $('.check');
+    var $chkboxes = $('.check');
     var lastChecked = null;
 
-    $chkboxes.click(function(e) {
+    $chkboxes.click(function (e) {
         if (!lastChecked) {
             lastChecked = this;
             return;
@@ -21,12 +19,12 @@ $(document).ready(function () {
             var start = $chkboxes.index(this);
             var end = $chkboxes.index(lastChecked);
 
-            $chkboxes.slice(Math.min(start,end), Math.max(start,end)+ 1).prop('checked', lastChecked.checked);
+            $chkboxes.slice(Math.min(start, end), Math.max(start, end) + 1).prop('checked', lastChecked.checked);
         }
 
         lastChecked = this;
     });
-    
+
 
     var cookies = document.cookie.split(";");
     var cookie = "";
@@ -38,99 +36,71 @@ $(document).ready(function () {
     }
 
 
-
-        $('#basic').DataTable({
+    $('#basic').DataTable({
         stateSave: true,
         dom: 'lBftrip',
-        buttons: [
-            'colvis',
-            'excel',
-            'print'
-        ],
+        buttons: ['colvis', 'excel', 'print'],
         scrollX: "auto",
-        lengthMenu: [
-            [-1, 10,20,30,40,50],
-            ['vše', 10,20,30,40,50,100],
-        ],
-        //scrollY: '700px',
+        lengthMenu: [[-1, 10, 20, 30, 40, 50], ['vše', 10, 20, 30, 40, 50, 100],], //scrollY: '700px',
         scrollCollapse: true,
-        search: { 
+        search: {
             search: cookie
         },
         columnDefs: [{
-            targets: 0,
-            orderable: false
-        }],
-       // responsive: true,
+            targets: 0, orderable: false
+        }], // responsive: true,
         language: {
-            search: "",
-            searchPlaceholder: "Vyhledávání"
+            search: "", searchPlaceholder: "Vyhledávání"
         },
-  
+
         initComplete: function (settings, json) {
             $('.dataTables_scrollBody').height($(window).innerHeight() - 220);
 
         }
     });//$('#basic').DataTable({
-    
-    
 
-    $(".dataTables_length").append(
-        $('<div id ="hamburger" class="topnav">' +
-            '' +
-            '<div class="table-filter">' +
-            '<button class="bn49" id="edit-btn">Upravit vybrané</button>' +
-            '<a class="bn49" href="#" id="link">Přidání Firmy</a>' +
-			' <div id="myLinks"><label>Aktivní:<input type="checkbox" id="check-active" checked></label>' +
-            
-            
-            '<button class="bn49" id="delete-btn">Odstranit vybrané</button>' +
-            '<button class="bn49" id="export-btn">Exportovat vybrané</button>' +
-            '<button class="bn49" id="export-vcard">vCard export</button>' +
-            
-            
-			'<a class="bn49 " href="/columns/columnForm.php">Úpravy sloupců</a>' +
-            '<a class="bn49 " href="/events/tableEvents.php">Události</a>' +
-            '<button class="bn49" id="edit-rows">Hromadná změna sloupce</button>' +
-            '<input id="email-btn" class="bn49" type="submit" value="Poslat email vybranym"></div>' +
-			'<a href="javascript:void(0);" class="icon" onclick="myFunction()"><i class="fa fa-bars"></i></a></div></div>'
-        )
-    );
-    
-    
 
-    $("#closeIframe").on('click',function () {
+    $(".dataTables_length").append($('<div id ="hamburger" class="topnav">' + '' + '<div class="table-filter">' + '<button class="bn49" id="edit-btn">Upravit vybrané</button>' + '<a class="bn49" href="#" id="link">Přidání Firmy</a>' + ' <div id="myLinks"><label>Aktivní:<input type="checkbox" id="check-active" checked></label>' +
+
+
+        '<button class="bn49" id="delete-btn">Odstranit vybrané</button>' + '<button class="bn49" id="export-btn">Exportovat vybrané</button>' + '<button class="bn49" id="export-vcard">vCard export</button>' +
+
+
+        '<a class="bn49 " href="/columns/columnForm.php">Úpravy sloupců</a>' + '<a class="bn49 " href="/events/tableEvents.php">Události</a>' + '<button class="bn49" id="edit-rows">Hromadná změna sloupce</button>' + '<input id="email-btn" class="bn49" type="submit" value="Poslat email vybranym"></div>' + '<a href="javascript:void(0);" class="icon" onclick="myFunction()"><i class="fa fa-bars"></i></a></div></div>'));
+
+
+    $("#closeIframe").on('click', function () {
         clearEditFirmForm();
         $(".myframe2").hide();
-    
+
     });
 
     function clearEditFirmForm() {
-    $(".form").trigger('reset');
-    /*$(".form").children().each(function(){
-    console.log($(this));
-        $(this).reset();
-    });
-    */
-    $(".form").attr("id","");
-    
-}
+        $(".form").trigger('reset');
+        /*$(".form").children().each(function(){
+        console.log($(this));
+            $(this).reset();
+        });
+        */
+        $(".form").attr("id", "");
+
+    }
 
     var table = $('#basic').DataTable().on('search.dt', function () {
         var serachInput = $("#basic_filter label input");
         var value = serachInput.val();
         if (value == "") {
             Setcookie("");
-			//window.history.replaceState("", "CRM", window.location.origin + "table.php?search=" + value);
+            //window.history.replaceState("", "CRM", window.location.origin + "table.php?search=" + value);
         } else {
             Setcookie(value);
             if (window.history.replaceState) {
-              //  window.history.replaceState("", "CRM", window.location.origin + "table.php?search=" + value);
+                //  window.history.replaceState("", "CRM", window.location.origin + "table.php?search=" + value);
             }
         }
     });
-    
-   
+
+
     var checkActive = $("#check-active");
     $('#basic').DataTable().column(4).search("1", true, false, true).draw();
     checkActive.on('change', function () {
@@ -150,10 +120,7 @@ $(document).ready(function () {
                 content: 'Smazat ' + selected.length + ' firem?',
                 buttons: {
                     yes: {
-                        text: 'Ano',
-                        btnClass: 'btn-blue',
-                        keys: ['enter', 'shift'],
-                        action: function () {
+                        text: 'Ano', btnClass: 'btn-blue', keys: ['enter', 'shift'], action: function () {
                             var array = [];
                             for (const tr of selected) {
                                 array.push($(tr).attr('id'));
@@ -162,7 +129,7 @@ $(document).ready(function () {
                             $.ajax({
                                 url: "/firms/deleteFirms.php",
                                 method: "POST",
-                                data: { "ids": array },
+                                data: {"ids": array},
                                 success: function (response) {
                                     //console.log(response);
                                     location.reload();
@@ -173,12 +140,8 @@ $(document).ready(function () {
 
                             });
                         }
-                    },
-                    no: {
-                        text: 'Ne',
-                        btnClass: 'btn-gray',
-                        keys: ['enter', 'shift'],
-                        action: function () {
+                    }, no: {
+                        text: 'Ne', btnClass: 'btn-gray', keys: ['enter', 'shift'], action: function () {
 
                         }
                     }
@@ -187,13 +150,14 @@ $(document).ready(function () {
         }
     });
 
-$("#export-vcard").click(function () {
-    var id = $(".check:checked").attr("id");
-    location.href="http://lm/vcard_export.php?id="+id;
-});
+    $("#export-vcard").click(function () {
+        var id = $(".check:checked").attr("id");
+        location.href = "http://lm/vcard_export.php?id=" + id;
+    });
     $("#export-btn").click(function () {
-  
+
         var selected = $(".selected");
+        let clname;
         if (selected.length > 0) {
             var array = [];
             for (const tr of selected) {
@@ -201,56 +165,54 @@ $("#export-vcard").click(function () {
             }
             //console.log(array);
             var form = document.createElement("form");
-            form.name="expF";
+            form.name = "expF";
             form.method = "POST";
             form.action = "/firms/exportFirms.php";
 
             var data = document.createElement("input");
 
-            var json = { "ids": array };
+            var json = {"ids": array};
             data.value = JSON.stringify(json);
             data.name = "ids";
             data.type = 'hidden';
 
-            
-            var columns = $("#table-head th");
-            
-            for(i=1;i<columns.length/2;i++) {
-            if (columns[i].classList[0]=="hidec") clname=columns[i].classList[1];else clname=columns[i].classList[0]; 
-            
-            var label = document.createElement("label");
-  
-              label.setAttribute("for","for"+clname);
-              let textNode = document.createTextNode(columns[i].textContent+": "); 
-              label.appendChild(textNode);
-              
-              form.appendChild(label);
-            
-              var elm = document.createElement("input");
-  
-              elm.name =clname;
-              elm.type = 'checkbox';
-              elm.value="1";
-              elm.checked="checked";
-              elm.setAttribute("id","for"+clname);
-            
+
+            let columns = $("#table-head th").not(".hidec");
+            for (let i = 1; i < columns.length / 2; i++) {
+                clname = columns[i].classList[1];
+                let label = document.createElement("label");
+                label.setAttribute("for", "for" + clname);
+                label.classList.add("expLabel");
+                let textNode = document.createTextNode(columns[i].textContent + ": ");
+                label.appendChild(textNode);
+                form.appendChild(label);
+
+                let elm = document.createElement("input");
+                elm.classList.add("expInput");
+                elm.name = clname;
+                elm.type = 'checkbox';
+                elm.value = "1";
+                let width = parseFloat(window.getComputedStyle(columns[i]).getPropertyValue("width"));
+                elm.checked = width > 0;
+                elm.setAttribute("id", "for" + clname);
+
                 form.appendChild(elm);
             }
-            
+
             form.appendChild(data);
-            
+
             //submit button
-             var btn = document.createElement("input");
-  
-              btn.value ="Odeslat";
-              btn.type = 'submit';
-                          
-                form.appendChild(btn);
-            
-            $("#exportForm").html("");            
+            var btn = document.createElement("input");
+
+            btn.value = "Odeslat";
+            btn.type = 'submit';
+
+            form.appendChild(btn);
+
+            $("#exportForm").html("");
             $("#exportForm").append(form);
 
-           //form.submit();
+            //form.submit();
         }
     })
 
@@ -272,12 +234,12 @@ $("#export-vcard").click(function () {
         }
     });
 
-    $("#edit-rows").click(function(){
+    $("#edit-rows").click(function () {
         var selected = $(".selected");
         if (selected.length > 0) {
             ids_str = "";
             for (var x = 0; x < selected.length; x++) {
-                ids_str += $(selected[x]).attr("id")+";";
+                ids_str += $(selected[x]).attr("id") + ";";
             }
             sessionStorage.setItem('ids', ids_str)
             window.location = "./firms/editRowsForm.php";
@@ -296,12 +258,11 @@ $("#export-vcard").click(function () {
 });//document ready
 
 
-
 $(window).resize(function () {
     $('.dataTables_scrollBody').height($(window).innerHeight() - 180);
 });
 
-function closeIFrame2(){
+function closeIFrame2() {
     $(".myframe2").hide();
     location.reload();
 }
