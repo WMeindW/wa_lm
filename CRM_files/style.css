@@ -1,3 +1,11 @@
+.exportForm{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 80%;
+    margin-right: auto;
+}
+
 .dataTables_length{
 /*    width: 80%;*/
     justify-content: space-between !important;

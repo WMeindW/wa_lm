@@ -168,6 +168,7 @@ $(document).ready(function () {
             form.name = "expF";
             form.method = "POST";
             form.action = "/firms/exportFirms.php";
+            form.classList.add("exportForm");
 
             var data = document.createElement("input");
 
@@ -185,7 +186,7 @@ $(document).ready(function () {
                 label.classList.add("expLabel");
                 let textNode = document.createTextNode(columns[i].textContent + ": ");
                 label.appendChild(textNode);
-                form.appendChild(label);
+
 
                 let elm = document.createElement("input");
                 elm.classList.add("expInput");
@@ -195,8 +196,8 @@ $(document).ready(function () {
                 let width = parseFloat(window.getComputedStyle(columns[i]).getPropertyValue("width"));
                 elm.checked = width > 0;
                 elm.setAttribute("id", "for" + clname);
-
-                form.appendChild(elm);
+                label.appendChild(elm);
+                form.appendChild(label);
             }
 
             form.appendChild(data);
@@ -207,7 +208,12 @@ $(document).ready(function () {
             btn.value = "Odeslat";
             btn.type = 'submit';
 
+            let inverseBtn = document.createElement("input");
+
+            inverseBtn.value = "Inverse";
+            inverseBtn.type = 'button';
             form.appendChild(btn);
+            form.appendChild(inverseBtn);
 
             $("#exportForm").html("");
             $("#exportForm").append(form);
