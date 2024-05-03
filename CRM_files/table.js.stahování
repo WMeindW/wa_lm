@@ -212,8 +212,34 @@ $(document).ready(function () {
 
             inverseBtn.value = "Inverse";
             inverseBtn.type = 'button';
+
+            let all = document.createElement("input");
+
+            all.value = "Select all";
+            all.type = 'button';
+
+            form.appendChild(all);
             form.appendChild(btn);
             form.appendChild(inverseBtn);
+            inverseBtn.addEventListener("click", function () {
+                let checks = $(".expInput");
+                for (let check of checks) {
+                    check.checked = !check.checked;
+                }
+            });
+            let allSelected = false;
+            all.addEventListener("click", function () {
+                let checks = $(".expInput");
+                for (let check of checks) {
+                    check.checked = !allSelected;
+                }
+                allSelected = !allSelected;
+                if (allSelected) {
+                    all.value = "Unselect all";
+                }else {
+                    all.value = "Select all";
+                }
+            });
 
             $("#exportForm").html("");
             $("#exportForm").append(form);
