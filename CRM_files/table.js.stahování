@@ -180,6 +180,9 @@ $(document).ready(function () {
 
             let columns = $("#table-head th").not(".hidec");
             for (let i = 1; i < columns.length / 2; i++) {
+                if (columns[i].textContent.trim() === "") {
+                    continue;
+                }
                 clname = columns[i].classList[1];
                 let label = document.createElement("label");
                 label.setAttribute("for", "for" + clname);
@@ -207,16 +210,19 @@ $(document).ready(function () {
 
             btn.value = "Odeslat";
             btn.type = 'submit';
+            btn.classList.add("expButton");
 
             let inverseBtn = document.createElement("input");
 
-            inverseBtn.value = "Inverse";
+            inverseBtn.value = "Invertovat";
             inverseBtn.type = 'button';
+            inverseBtn.classList.add("expButton");
 
             let all = document.createElement("input");
 
-            all.value = "Select all";
+            all.value = "Označit vše";
             all.type = 'button';
+            all.classList.add("expButton");
 
             form.appendChild(all);
             form.appendChild(btn);
@@ -235,9 +241,9 @@ $(document).ready(function () {
                 }
                 allSelected = !allSelected;
                 if (allSelected) {
-                    all.value = "Unselect all";
-                }else {
-                    all.value = "Select all";
+                    all.value = "Odoznačit vše";
+                } else {
+                    all.value = "Označit vše";
                 }
             });
 
