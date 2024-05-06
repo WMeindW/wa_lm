@@ -50,7 +50,15 @@ $(document).ready(function () {
             targets: 0, orderable: false
         }], // responsive: true,
         language: {
-            search: "", searchPlaceholder: "Vyhledávání"
+            search: "Vyhledat:",
+            searchPlaceholder: "Vyhledávání",
+            info: "Ukazuje _START_ do _END_ z _TOTAL_ firem",
+            lengthMenu: "Zobrazit _MENU_ položek",
+            paginate:
+                {
+                    next: "Další",
+                    previous: "Zpět"
+                }
         },
 
         initComplete: function (settings, json) {
