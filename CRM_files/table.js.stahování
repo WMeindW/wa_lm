@@ -54,6 +54,7 @@ $(document).ready(function () {
             searchPlaceholder: "Vyhledávání",
             info: "Ukazuje _START_ do _END_ z _TOTAL_ firem",
             lengthMenu: "Zobrazit _MENU_ položek",
+            infoFiltered:   "(filtrováno z _MAX_ celkových záznamů)",
             paginate:
                 {
                     next: "Další",
