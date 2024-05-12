@@ -8,7 +8,7 @@
   overflow:auto;
 
     position: absolute;
-    display:none;
+  display:none;
     width: 50%;
     height: 100vh;
     right: 0;
@@ -182,7 +182,6 @@ body {
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: flex-end;
-  
 }
 .form .field {
   width: 100%;
@@ -192,7 +191,6 @@ body {
   .form .field.half {
     width: calc(48% - 1px);
   }
-  
 }
 .form .field.last {
   margin-left: auto;
@@ -251,4 +249,3 @@ body {
   will-change: top, left, width;
   transform-origin: 0 0;
 }
-
